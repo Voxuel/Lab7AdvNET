@@ -2,9 +2,17 @@
 
 namespace Lab7AdvNET;
 
+
+// Application runs with float number type for simplicity, As a normal calculator would probably -
+// use for example deciaml.
 public class Menu
 {
-    public static List<string> Results = new List<string>();
+    public static List<string> Results = new();
+    
+
+    /// <summary>
+    /// App start and main menu method.
+    /// </summary>
     public static void RunApp()
     {
         int input = 0;
@@ -29,7 +37,9 @@ public class Menu
             }
         }
     }
-
+    /// <summary>
+    /// Sub-menu for new calculation.
+    /// </summary>
     public static void Calculate()
     {
         Console.Write("Choose the first number: ");
@@ -37,7 +47,7 @@ public class Menu
         Console.Write("\nChoose the second number: ");
         var second = Console.ReadLine();
         Console.WriteLine("Choose an option below");
-        Console.WriteLine("1.Addition\n2.Subtraction\n3.Division");
+        Console.WriteLine("1.Addition\n2.Subtraction\n3.Division\n4.Multiply");
         int.TryParse(Console.ReadLine(), out int input);
 
         switch (input)
@@ -54,10 +64,16 @@ public class Menu
                 Calculator div = new Division(first, second);
                 div.Run();
                 break;
+            case 4:
+                Calculator multi = new Multiply(first, second);
+                multi.Run();
+                break;
         }
     }
     
-
+    /// <summary>
+    /// Prints all results in the log
+    /// </summary>
     public static void PrintAllResults()
     {
         foreach (var result in Results)
