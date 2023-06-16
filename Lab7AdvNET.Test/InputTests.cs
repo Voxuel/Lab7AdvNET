@@ -28,4 +28,18 @@ public class InputTests
         
         Assert.Equal(expected,result);
     }
+
+    [Fact]
+    public void ReceiveEmptyStringAsInput_ShouldReturnErrorMessage()
+    {
+        var calc = new Calculator("","1");
+        var sw = new StringWriter();
+        Console.SetOut(sw);
+        var expected = "\nWrong input type try again\r\n";
+
+        calc.Input(calc.X, calc.Y);
+        string result = sw.ToString();
+        
+        Assert.Equal(expected,result);
+    }
 }
